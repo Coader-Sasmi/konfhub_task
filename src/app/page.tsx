@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import {
   EventSponsors,
   HeroSection,
@@ -16,8 +17,11 @@ export default function Home() {
       <section className="w-full flex lg:flex-row flex-col h-full">
         <div className="lg:w-9/12 w-full flex flex-col">
           <HeroSection />
+          <div className="block lg:hidden">
+            <RightBar />
+          </div>
           <div className="grid grid-cols-12 gap-7 main-container bg-gray-100/90 py-12">
-            <div className="col-span-7 flex-col flex gap-5">
+            <div className="md:col-span-7 col-span-12 flex-col flex gap-5">
               <h1 className="heading_title">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
               </h1>
@@ -34,12 +38,17 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="col-span-5 h-full rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] overflow-hidden">
-              <img
-                src="https://i.ytimg.com/vi_webp/bEM35JDYjrI/maxresdefault.webp"
-                alt=""
-                className="w-full rounded-xl h-[110%] -translate-y-4"
-              />
+            <div className="md:col-span-5 col-span-12 h-full rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] overflow-hidden">
+              <Link
+                href="https://www.youtube.com/watch?v=bEM35JDYjrI"
+                target="_blank"
+              >
+                <img
+                  src="https://i.ytimg.com/vi_webp/bEM35JDYjrI/maxresdefault.webp"
+                  alt=""
+                  className="w-full rounded-xl h-[110%] -translate-y-4 "
+                />
+              </Link>
             </div>
           </div>
 
@@ -48,7 +57,7 @@ export default function Home() {
           <Workshop />
           <EventSponsors />
         </div>
-        <section className="lg:w-3/12 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] w-full bottom-0 top-0 z-20 lg:fixed right-0 bg-white border-l border-primary/10">
+        <section className="lg:w-3/12 hidden lg:block shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] w-full bottom-0 top-0 z-20 lg:fixed right-0 bg-white border-l border-primary/10">
           <RightBar />
         </section>
       </section>

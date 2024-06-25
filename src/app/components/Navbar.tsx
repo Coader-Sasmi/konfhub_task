@@ -44,8 +44,8 @@ const ResponsiveNav = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="main-container block lg:hidden py-1 relative z-[9000] shadow">
-      <div className="flex justify-between items-center">
+    <section className="main-container block lg:hidden py-1 relative  z-[9000] shadow">
+      <div className="flex justify-between items-center ">
         <Link href="/">
           <img src="./main_logo.svg" alt="main_logo" className="h-16" />
         </Link>
@@ -63,7 +63,9 @@ const ResponsiveNav = () => {
         <section className="flex flex-col gap-4  absolute bg-white left-0 shadow p-5 top-14 md:top-16 w-full uppercase font-semibold">
           {menuArr?.map((item, index) => (
             <p key={index} className="cursor-pointer">
-              {item?.title}
+              <Link href={item?.link}>
+                <span>{item?.title}</span>
+              </Link>
             </p>
           ))}
           <Link href="https://dev-accounts.konfhub.com/login">Register</Link>
