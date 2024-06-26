@@ -179,16 +179,16 @@ export default function Ticket() {
        py-12 main-container"
       >
         <h1 className="heading_title z-20">Tickets</h1>
-        <div className=" w-full items-start rounded-lg gap-5 flex bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] md:p-5">
+        <div className=" w-full items-start rounded-lg md:gap-5 gap-3 flex bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] md:p-5 p-1">
           {ticketcArr.map((curElm, i) => (
             <div key={i}>
               <button
                 onClick={() => setCur(i)}
                 className={`${
                   cur === i ? "bg-secondary/70" : "bg-primary"
-                } md:w-40 w-32 rounded-md py-2 text-white flex gap-2 justify-center items-center`}
+                } md:w-40 w-24 rounded-md py-2 text-white flex gap-2 justify-center items-center`}
               >
-                <div className="-mt-1">{curElm?.icon}</div>
+                <div className="-mt-1 hidden md:block">{curElm?.icon}</div>
                 <p className="font-">{curElm?.title}</p>
               </button>
             </div>
