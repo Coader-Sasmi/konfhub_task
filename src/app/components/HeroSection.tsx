@@ -8,7 +8,7 @@ export default function HeroSection({
   const regex = /<img[^>]+src="([^">]+)"/i;
   const match = value?.description.match(regex);
 
-  const tableRegex = /<table.*?>.*?<\/table>/s;
+  const tableRegex = /<table[\s\S]*?<\/table>/m;
   const tableMatch = value?.description.match(tableRegex);
 
   return (
