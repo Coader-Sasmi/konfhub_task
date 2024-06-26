@@ -1,4 +1,8 @@
 "use client";
+
+import { useState } from "react";
+import ViewDetailsDrawer from "./ViewDetailsDrawer";
+
 export default function Workshop({
   value,
 }: {
@@ -44,8 +48,17 @@ export default function Workshop({
       ],
     },
   ];
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<any>();
+
   return (
     <div className="bg-transparent  main-container py-16" id="workshop">
+      <ViewDetailsDrawer
+        openDrawer={openDrawer}
+        setOpenDrawer={setOpenDrawer}
+        activeIndex={activeIndex}
+        value={value}
+      />
       <div className="flex flex-col gap-2 pb-5">
         <h1 className="heading_title uppercase">
           {value?.workshop_section_title || ""}
@@ -94,7 +107,12 @@ export default function Workshop({
                     </div>
                   ))}
                 </div>
-                <button className="px-3 py-1 rounded-md bg-primary text-white text-sm">
+                <button
+                  className="px-3 py-1 rounded-md bg-primary text-white text-sm"
+                  onClick={() => {
+                    setOpenDrawer(true), setActiveIndex(item);
+                  }}
+                >
                   View Details
                 </button>
               </div>

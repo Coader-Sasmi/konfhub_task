@@ -13,7 +13,6 @@ import {
 
 export default function Home() {
   const [value, setValue] = useState<EventDetails>();
-  console.log(value);
 
   useEffect(() => {
     (async () => {
