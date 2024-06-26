@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   EventSponsors,
   HeroSection,
@@ -11,12 +12,31 @@ import {
 } from "./components";
 
 export default function Home() {
+  const [value, setValue] = useState<EventDetails>();
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        "https://dev-api.konfhub.com/event/public/konfhub-frontend-evaluation-task"
+      );
+      const json = await response.json();
+
+      setValue(json);
+    })();
+  }, []);
+
+  const regex = /youtube\.com\/embed\/([a-zA-Z0-9_-]+)/;
+  const match = value?.description.match(regex);
+
+  // Extracting the video ID from the match
+  const videoId = match ? match[1] : null;
+
   return (
     <article className="bg-purple-50/50">
       <Navbar />
       <section className="w-full flex lg:flex-row flex-col h-full">
         <div className="lg:w-9/12 w-full flex flex-col">
-          <HeroSection />
+          <HeroSection value={value} />
           <div className="block lg:hidden">
             <RightBar />
           </div>
@@ -40,7 +60,7 @@ export default function Home() {
             </div>
             <div className="md:col-span-5 col-span-12 h-full rounded-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] overflow-hidden">
               <Link
-                href="https://www.youtube.com/watch?v=bEM35JDYjrI"
+                href={`https://www.youtube.com/watch?v=${videoId}`}
                 target="_blank"
               >
                 <img

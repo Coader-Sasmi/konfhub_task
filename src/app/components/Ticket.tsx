@@ -173,13 +173,13 @@ export default function Ticket() {
   ];
 
   return (
-    <section className="bg-purple-50/50" id="ticket">
+    <section className="bg-purple-50/50 scroll-m-10" id="ticket">
       <div
         className="flex items-start justify-center flex-col gap-5
        py-12 main-container"
       >
         <h1 className="heading_title z-20">Tickets</h1>
-        <div className=" w-full items-start rounded-lg gap-5 flex bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] p-5">
+        <div className=" w-full items-start rounded-lg gap-5 flex bg-white shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] md:p-5">
           {ticketcArr.map((curElm, i) => (
             <div key={i}>
               <button
@@ -207,11 +207,6 @@ export default function Ticket() {
               </p>
               <div className="flex flex-col gap-3">
                 <div className="flex items-start gap-1">
-                  {/* <img
-                    src="./image/location.png"
-                    alt="location"
-                    className="h-5 w-5"
-                  /> */}
                   <p className="text-blue-500 text-xs">{item.location}</p>
                 </div>
 
