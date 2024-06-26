@@ -1,17 +1,53 @@
 import { OpenInNew } from "@mui/icons-material";
+import moment from "moment";
 
-export default function RightBar() {
+export default function RightBar({
+  value,
+}: {
+  value: EventDetails | undefined;
+}) {
   const contactArr = [
-    { image: "./image/facebook.png", link: "https://www.facebook.com/konfhub" },
-    { image: "./image/twitter.png", link: "https://twitter.com/konfhub" },
-    { image: "./image/linkedin.png", link: "https://linkedin.com/konfhub" },
-    { image: "./image/internet.png", link: "https://darkknight.in" },
-    { image: "./image/email.png", link: "mailto:manjunath@konfhub.com" },
+    {
+      image: "./image/facebook.png",
+      link: `${value?.organizer_facebook_url || ""}`,
+    },
+    {
+      image: "./image/twitter.png",
+      link: `${value?.organizer_twitter_url || ""}`,
+    },
+    {
+      image: "./image/linkedin.png",
+      link: `${value?.organizer_linkedin_url || ""}`,
+    },
+    {
+      image: "./image/internet.png",
+      link: `${value?.organiser_website || ""}`,
+    },
+    {
+      image: "./image/email.png",
+      link: `mailto:${value?.organiser_email || ""}`,
+    },
     {
       image: "./image/telephone.png",
-      link: "tel:+919988776655",
+      link: `tel:${value?.organiser_dial_code || ""}${
+        value?.organiser_phone || ""
+      }`,
     },
   ];
+  const inputTime = value?.start_time;
+  // Parse the string into a Moment object
+  const timeMoment = moment(inputTime, "HH:mm:ss");
+
+  // Format the Moment object to get only the time
+  const formattedTime = timeMoment.format("HH:mm A");
+
+  const endTime = value?.end_time;
+  // Parse the string into a Moment object
+  const endMoment = moment(endTime, "HH:mm:ss");
+
+  // Format the Moment object to get only the time
+  const formattedEndTime = endMoment.format("HH:mm A");
+
   return (
     <aside className="flex flex-col gap-3 pt-24 px-6">
       <section className="flex flex-col gap-3">
@@ -34,17 +70,20 @@ export default function RightBar() {
           <p>
             Event Live Link :{" "}
             <a
-              href="https://dev.konfhub.com/konfhub-frontend-evaluation-task"
+              href={value?.event_live_link || ""}
               target="_"
               className="text-blue-500 underline"
             >
               Open streaming website
             </a>
           </p>
+
           <p>
             Date:{" "}
             <span className="text-gray-500 text-xs tracking-wider">
-              Jul 31st, 2034 6:00 AM - Aug 31st, 2034 6:00 PM IST
+              {moment(value?.start_date).format("MMMM Do YYYY")} {formattedTime}{" "}
+              - {moment(value?.end_date).format("MMMM Do YYYY")}{" "}
+              {formattedEndTime}
             </span>
           </p>
         </div>
@@ -55,14 +94,14 @@ export default function RightBar() {
           </p>
         </div>
         <a
-          href="https://dev.konfhub.com/konfhub-frontend-evaluation-task"
+          href={value?.event_live_link || ""}
           target="_"
           className="btn_primary py-2 rounded-lg"
         >
           Buy Now
         </a>
         <a
-          href="https://dev.konfhub.com/konfhub-frontend-evaluation-task"
+          href={value?.event_live_link || ""}
           target="_"
           className="common-transition border border-secondary py-1 rounded-lg flex justify-center items-center gap-2 hover:text-blue-500 hover:underline "
         >
@@ -75,18 +114,20 @@ export default function RightBar() {
         <div className="">
           <div className="flex gap-2 h-full">
             <img
-              src="./image/profile_image.jpg"
+              src={value?.organiser_image_url || ""}
               alt="profile"
               className="h-20 rounded-full object-cover"
             />
             <div>
               <h1 className="text-lg font-medium tracking-wider">
-                Manjunath R
+                {value?.organiser_name || ""}
               </h1>
-              <p className="text-xs font-light md:tracking-wide">
-                This is the description of the organiser. You can get to know
-                more about the organiser here.
-              </p>
+              <p
+                className="text-xs font-light md:tracking-wide"
+                dangerouslySetInnerHTML={{
+                  __html: `${value?.organiser_info || ""}`,
+                }}
+              ></p>
             </div>
           </div>
           <div className="flex gap-3 pt-5">

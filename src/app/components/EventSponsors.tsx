@@ -1,11 +1,22 @@
-export default function EventSponsors() {
+export default function EventSponsors({
+  value,
+}: {
+  value: EventDetails | undefined;
+}) {
   return (
     <section
       className="flex flex-col gap-5 bg-white  main-container py-16"
       id="event"
     >
-      <h1 className="heading_title leading-3">THIS IS EVENT SPONSORS</h1>
-      <p className="description">This is description of sponsors section.</p>
+      <h1 className="heading_title leading-3 !uppercase">
+        {value?.sponsor_section_title || ""}
+      </h1>
+      <p
+        className="description"
+        dangerouslySetInnerHTML={{
+          __html: `${value?.sponsor_section_description || ""}`,
+        }}
+      ></p>
       <div className="grid md:grid-cols-3 grid-cols-1 gap-7">
         <a href="https://konfhub.com/" target="_">
           <img

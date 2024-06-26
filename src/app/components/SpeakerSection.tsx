@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 
-export default function SpeakerSection() {
+export default function SpeakerSection({
+  value,
+}: {
+  value: EventDetails | undefined;
+}) {
   const speakerArr = [
     {
       id: 1,
@@ -24,10 +28,15 @@ export default function SpeakerSection() {
   return (
     <div className="bg-white main-container py-16" id="speaker">
       <div className="flex flex-col gap-2">
-        <h1 className="heading_title">THIS IS SPEAKERS SECTION</h1>
-        <p className="description">
-          This is the description for speakers section.
-        </p>
+        <h1 className="heading_title !uppercase">
+          {value?.speaker_section_title || ""}
+        </h1>
+        <p
+          className="description"
+          dangerouslySetInnerHTML={{
+            __html: `${value?.speaker_section_description || ""}`,
+          }}
+        ></p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 w-full gap-6">
         {speakerArr.map((item, i) => (

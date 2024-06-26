@@ -10,13 +10,17 @@ export const menuArr = [
   { title: "Event Sponsors", link: "#event" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ value }: { value: EventDetails | undefined }) {
   return (
     <>
       <nav className=" main-container w-full bg-white shadow lg:sticky lg:block top-0 z-[999] hidden">
         <section className="flex justify-between w-full items-center ">
           <Link href="/">
-            <img src="./main_logo.svg" alt="main_logo" className="h-16" />
+            <img
+              src={value?.navbar_icon || ""}
+              alt="main_logo"
+              className="h-16"
+            />
           </Link>
 
           <div className="lg:flex gap-10 hidden">
@@ -35,19 +39,23 @@ export default function Navbar() {
           </div>
         </section>
       </nav>
-      <ResponsiveNav />
+      <ResponsiveNav value={value} />
     </>
   );
 }
 
-const ResponsiveNav = () => {
+const ResponsiveNav = ({ value }: { value: EventDetails | undefined }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <section className="main-container block lg:hidden py-1 relative  z-[9000] shadow">
       <div className="flex justify-between items-center ">
         <Link href="/">
-          <img src="./main_logo.svg" alt="main_logo" className="h-16" />
+          <img
+            src={value?.navbar_icon || ""}
+            alt="main_logo"
+            className="h-16"
+          />
         </Link>
 
         <span className="" onClick={() => setOpen(!open)}>

@@ -1,5 +1,9 @@
 "use client";
-export default function Workshop() {
+export default function Workshop({
+  value,
+}: {
+  value: EventDetails | undefined;
+}) {
   const workShopArr = [
     {
       id: 1,
@@ -43,11 +47,15 @@ export default function Workshop() {
   return (
     <div className="bg-transparent  main-container py-16" id="workshop">
       <div className="flex flex-col gap-2 pb-5">
-        <h1 className="heading_title">THIS IS WORKSHOP SECTION</h1>
-        <p className="description">
-          {" "}
-          This is the description for workshop sections.
-        </p>
+        <h1 className="heading_title uppercase">
+          {value?.workshop_section_title || ""}
+        </h1>
+        <p
+          className="description"
+          dangerouslySetInnerHTML={{
+            __html: `${value?.workshop_section_description || ""}`,
+          }}
+        ></p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {workShopArr.map((item, i) => (

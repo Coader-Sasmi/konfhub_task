@@ -13,6 +13,7 @@ import {
 
 export default function Home() {
   const [value, setValue] = useState<EventDetails>();
+  console.log(value);
 
   useEffect(() => {
     (async () => {
@@ -33,12 +34,12 @@ export default function Home() {
 
   return (
     <article className="bg-purple-50/50">
-      <Navbar />
+      <Navbar value={value} />
       <section className="w-full flex lg:flex-row flex-col h-full">
         <div className="lg:w-9/12 w-full flex flex-col">
           <HeroSection value={value} />
           <div className="block lg:hidden">
-            <RightBar />
+            <RightBar value={value} />
           </div>
           <div className="grid grid-cols-12 gap-7 main-container bg-gray-100/90 py-12">
             <div className="md:col-span-7 col-span-12 flex-col flex gap-5">
@@ -73,12 +74,12 @@ export default function Home() {
           </div>
 
           <Ticket />
-          <SpeakerSection />
-          <Workshop />
-          <EventSponsors />
+          <SpeakerSection value={value} />
+          <Workshop value={value} />
+          <EventSponsors value={value} />
         </div>
         <section className="lg:w-3/12 hidden lg:block shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] w-full bottom-0 top-0 z-20 lg:fixed right-0 bg-white border-l border-primary/10">
-          <RightBar />
+          <RightBar value={value} />
         </section>
       </section>
     </article>
