@@ -40,34 +40,40 @@ export default function SpeakerSection({
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 w-full gap-6">
         {speakerArr.map((item, i) => (
-          <Speaker item={item} key={i} />
+          <Speaker item={item} key={i} value={value} />
         ))}
       </div>
     </div>
   );
 }
 
-const Speaker = ({ item }: { item: any }) => {
+const Speaker = ({
+  item,
+  value,
+}: {
+  item: any;
+  value: EventDetails | undefined;
+}) => {
   const socialArr = [
     {
       id: 1,
       image: "https://cdn-icons-png.flaticon.com/128/20/20837.png",
-      link: "https://www.facebook.com/konfhub",
+      link: `${value?.organizer_facebook_url || ""}`,
     },
     {
       id: 2,
       image: "https://cdn-icons-png.flaticon.com/128/2976/2976286.png",
-      link: "https://x.com/konfhub",
+      link: `${value?.organizer_twitter_url || ""}`,
     },
     {
       id: 3,
       image: "https://cdn-icons-png.flaticon.com/128/2111/2111532.png",
-      link: "https://www.linkedin.com/konfhub?_l=en_US",
+      link: `${value?.organizer_linkedin_url || ""}`,
     },
     {
       id: 4,
       image: "https://cdn-icons-png.flaticon.com/128/3083/3083741.png",
-      link: "https://konfhub.com/",
+      link: `${value?.organiser_website || ""}`,
     },
   ];
   return (

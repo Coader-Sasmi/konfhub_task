@@ -35,17 +35,11 @@ export default function RightBar({
     },
   ];
   const inputTime = value?.start_time;
-  // Parse the string into a Moment object
   const timeMoment = moment(inputTime, "HH:mm:ss");
-
-  // Format the Moment object to get only the time
   const formattedTime = timeMoment.format("HH:mm A");
 
   const endTime = value?.end_time;
-  // Parse the string into a Moment object
   const endMoment = moment(endTime, "HH:mm:ss");
-
-  // Format the Moment object to get only the time
   const formattedEndTime = endMoment.format("HH:mm A");
 
   return (
